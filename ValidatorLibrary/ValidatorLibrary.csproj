@@ -45,4 +45,9 @@
 		<Compile Include="src/**/*.cs" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="dist\" />
+	  <Folder Include="docs\" />
+	</ItemGroup>
+
 </Project>
