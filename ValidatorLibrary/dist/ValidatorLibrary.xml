@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ValidatorLibrary</name>
+    </assembly>
+    <members>
+        <member name="T:ValidatorLibrary.Validator`1">
+            <summary>
+            Abstract base class for creating custom validators for a specific type.
+            </summary>
+            <typeparam name="T">The type of the object to be validated.</typeparam>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.IsNotNullOrEmpty(System.Func{`0,System.String},System.String)">
+            <summary>
+            Validates that the selected property is not null or empty.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.HasMinLength(System.Func{`0,System.String},System.Int32,System.String)">
+            <summary>
+            Validates that the selected property has a minimum length.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="minLength">The minimum length required.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.HasMinValue(System.Func{`0,System.IComparable},System.IComparable,System.String)">
+            <summary>
+            Validates that the selected property has a minimum value.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="minValue">The minimum value required.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.IsValidEmail(System.Func{`0,System.String},System.String)">
+            <summary>
+            Validates that the selected property is a valid email address.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.IsValidPhone(System.Func{`0,System.String},System.String)">
+            <summary>
+            Validates that the selected property is a valid phone number.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.Matches(System.Func{`0,System.String},System.String,System.String)">
+            <summary>
+            Validates that the selected property matches a specified pattern.
+            </summary>
+            <param name="propertySelector">A function to select the property to validate.</param>
+            <param name="pattern">The regex pattern to match.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.IsTrue(System.Func{`0,System.Boolean},System.String)">
+            <summary>
+            Validates that a custom predicate is true.
+            </summary>
+            <param name="predicate">A function that defines the custom validation logic.</param>
+            <param name="errorMessage">The error message to return if validation fails.</param>
+            <returns>The current instance of MicroValidator.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:ValidatorLibrary.Validator`1"/> class with the specified data.
+            </summary>
+            <param name="data">The data to be validated.</param>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.AddRule(System.Func{`0,System.Boolean},System.String)">
+            <summary>
+            Adds a validation rule to the validator.
+            </summary>
+            <param name="rule">The validation rule as a function that returns a boolean.</param>
+            <param name="errorMessage">The error message to return if the validation fails.</param>
+            <returns>The current instance of <see cref="T:ValidatorLibrary.Validator`1"/>.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.IsValid">
+            <summary>
+            Determines whether the data is valid based on the defined rules.
+            </summary>
+            <returns><c>true</c> if the data is valid; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.GetErrors">
+            <summary>
+            Gets the list of error messages for the failed validations.
+            </summary>
+            <returns>A list of error messages.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.Validator`1.DefineRules">
+            <summary>
+            Defines the validation rules. This method must be implemented in derived classes.
+            </summary>
+        </member>
+        <member name="T:ValidatorLibrary.GenericValidatorResults">
+            <summary>
+            Represents the results of a generic validation operation.
+            </summary>
+            <param name="IsValid">Indicates whether the validation was successful.</param>
+            <param name="ErrorMessages">A collection of error messages if the validation failed.</param>
+        </member>
+        <member name="M:ValidatorLibrary.GenericValidatorResults.#ctor(System.Boolean,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Represents the results of a generic validation operation.
+            </summary>
+            <param name="IsValid">Indicates whether the validation was successful.</param>
+            <param name="ErrorMessages">A collection of error messages if the validation failed.</param>
+        </member>
+        <member name="P:ValidatorLibrary.GenericValidatorResults.IsValid">
+            <summary>Indicates whether the validation was successful.</summary>
+        </member>
+        <member name="P:ValidatorLibrary.GenericValidatorResults.ErrorMessages">
+            <summary>A collection of error messages if the validation failed.</summary>
+        </member>
+        <member name="T:ValidatorLibrary.GenericValidator">
+            <summary>
+            Provides methods for validating objects using data annotations.
+            </summary>
+        </member>
+        <member name="M:ValidatorLibrary.GenericValidator.Validate``1(``0)">
+            <summary>
+            Validates the specified model using data annotations.
+            </summary>
+            <typeparam name="TModel">The type of the model to validate.</typeparam>
+            <param name="model">The model to validate.</param>
+            <returns>A <see cref="T:ValidatorLibrary.GenericValidatorResults"/> object containing the validation results.</returns>
+        </member>
+        <member name="M:ValidatorLibrary.GenericValidator.TryValidate``1(``0,System.Collections.Generic.IEnumerable{System.String}@)">
+            <summary>
+            Tries to validate the specified model using data annotations.
+            </summary>
+            <typeparam name="TModel">The type of the model to validate.</typeparam>
+            <param name="model">The model to validate.</param>
+            <param name="errorMessages">When this method returns, contains a collection of error messages if the validation failed.</param>
+            <returns><c>true</c> if the model is valid; otherwise, <c>false</c>.</returns>
+        </member>
+    </members>
+</doc>
